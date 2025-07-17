@@ -12,5 +12,14 @@ def emotion_detector(text_to_analyze):
         dominant_emotion = max(emotions, key=lambda k: emotions[k])
         emotions['dominant_emotion'] = dominant_emotion
         return emotions
+    elif res.status_code == 400:
+        return {
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None
+            }
     else:
         return {"error": f"Request failed with status code {res.status_code}"}

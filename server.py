@@ -10,13 +10,16 @@ def emotion_detection_route():
     text_to_analyze = request.args.get('textToAnalyze')
 
     res = emotion_detector(text_to_analyze)
+    
+    if res['dominant_emotion'] is None:
+        return {"message": "Invalid text! Please try again!"}, 400
+
 
     emotions = [f"'{key}': {value}" for key, value in res.items()]
     emotions.pop()
 
 
-    output = f'''For the given statement, the system response is {','.join(emotions)}. The dominant emotion is <b>{res['dominant_emotion']}</b>.
-        '''
+    output = f'''For the given statement, the system response is {','.join(emotions)}. The dominant emotion is <b>{res['dominant_emotion']}</b>.'''
     return output
 
 @app.route("/")
