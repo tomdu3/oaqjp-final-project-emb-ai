@@ -15,10 +15,7 @@ def emotion_detection_route():
     emotions.pop()
 
 
-    output = f'''
-        For the given statement, the system res
-        is {','.join(emotions)}. The dominant emotion 
-        is <b>{res['dominant_emotion']}</b>.
+    output = f'''For the given statement, the system response is {','.join(emotions)}. The dominant emotion is <b>{res['dominant_emotion']}</b>.
         '''
     return output
 
